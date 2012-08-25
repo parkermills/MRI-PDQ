@@ -1,0 +1,44 @@
+PDQ - Phase Cross Correlation Detection and Quantification Software License
+December 1, 2011
+
+Copyright (c) 2011
+Parker Mills
+Ahrens Lab
+Pittsburgh NMR Center for Biomedical Research
+Department of Biological Sciences
+Carnegie Mellon University
+
+The license for PDQ consists of the standard open-source-initiative-approved The MIT License (MIT),
+with a simple attribution addendum.
+
+PDQ development was substantially funded by grants awarded by the U.S. National Institutes of Health.
+
+
+====== Standard License: The MIT License (MIT) =======
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial
+portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+======= License Addendum: Attribution =======
+
+Use of the Software or substantially derivative software to generate published scientific results
+must be attributed by either casual in-line citation or formal reference citation in the published
+work containing the scientific results.
+
+Publication of substantially derivative software must include a reasonably readily visible reference
+to the full copyright holder text block (above), or subportions thereof.
+
