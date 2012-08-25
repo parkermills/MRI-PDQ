@@ -1,20 +1,25 @@
-PDQ - Phase Cross Correlation Detection and Quantification Software License
-December 1, 2011
+====== Software Information ======
 
-Copyright (c) 2011
+PDQ - Phase Cross Correlation Detection and Quantification
 Parker Mills
 Ahrens Lab
 Pittsburgh NMR Center for Biomedical Research
 Department of Biological Sciences
 Carnegie Mellon University
 
-The license for PDQ consists of the standard open-source-initiative-approved The MIT License (MIT),
-with a simple attribution addendum.
-
-PDQ development was substantially funded by grants awarded by the U.S. National Institutes of Health.
 
 
-====== Standard License: The MIT License (MIT) =======
+====== Software License ======
+
+The license for PDQ consists of two parts:
+Part 1: An unmodified 'The MIT License' (MIT)
+Part 2: An attribution addendum
+
+PDQ's development was directly and indirectly funded by grants awarded by the U.S. National Institutes of Health.
+
+
+
+====== License Part 1: The MIT License (MIT) =======
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 associated documentation files (the "Software"), to deal in the Software without restriction,
@@ -33,12 +38,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
-======= License Addendum: Attribution =======
+======= License Part 2: Attribution Addendum =======
 
-Use of the Software or substantially derivative software to generate published scientific results
-must be attributed by either casual in-line citation or formal reference citation in the published
-work containing the scientific results.
+Use of this software, or substantially derivative software, to generate published scientific results must be attributed 
+by either casual in-line citation or formal reference citation. Attribution can be a mention of the PDQ software or 
+citation of one of PDQ's related publications.
 
 Publication of substantially derivative software must include a reasonably readily visible reference
-to the full copyright holder text block (above), or subportions thereof.
+to the software information text block (above), or subportions thereof.
 
