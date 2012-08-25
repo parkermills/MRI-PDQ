@@ -3,37 +3,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-
-
-********* DRAFT ** DRAFT ** DRAFT *************
-
-
-
-
------------------------
+---------------------
       Contents
------------------------
-0) Software Dependencies
+---------------------
+0) Dependencies
 1) PDQ Process
 2) PDQ Function List
-2) PDQ Data Structure: MRIdata
-3) PDQ Data Structure: Template
+2) PDQ Object: MRIdata
+3) PDQ Object: Template
 4) xxxxx
 
 
 
------------------------
-0) Software Dependencies
------------------------
-PDQ is dependent on MATLAB functions created by 3rd parties.
-1) localmaxmin.m
-2) dsxy2figxy.m
-3) Simplex.m
-4) NIFTI (load_nii.m / save_nii.m / etc.)
-5) normxcorr3.m / normxcorr2.m
+-----------------
+0) Dependencies
+-----------------
+PDQ is dependent on the following MATLAB functions created by 3rd parties:
 
-
+(Provided)	localmaxmin.m	(D.C. Hanselman, University of Maine, Orono, ME 04469)
+(Provided)	dsxy2figxy.m	(SigPlot, Yannis Agiomyrgiannakis)
+(Provided)	Simplex.m 	(Fred Sigworth
+)
+(Not provided)	load_nii.m	(NIFTI, XXXXXXXXX)
+		save_nii.m		"
+(Not provided)	normxcorr3.m	(XXXXXXXX)
+		normxcorr2.m	        "
+(Provided)	prelude		(FSL, XXXXXXXXXXXXXX)
 
 
 -------------------------------------
