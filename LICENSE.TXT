@@ -45,5 +45,5 @@ by either casual in-line citation or formal reference citation. Attribution can 
 citation of one of PDQ's related publications.
 
 Publication of substantially derivative software must include a reasonably readily visible reference
-to the software information text block (above), or subportions thereof.
+to the Software Information text block (above), or subportions thereof.
 
