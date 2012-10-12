@@ -2,16 +2,46 @@
             PDQ README
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 ---------------------
       Contents
 ---------------------
-0) Dependencies
-1) PDQ Process
-2) PDQ Function List
-2) PDQ Object: MRIdata
-3) PDQ Object: Template
-4) xxxxx
+1) Version History
+2) Compatibility
+3) Dependencies
+4) PDQ Process
+5) PDQ Function List
+6) PDQ Object: MRIdata
+7) PDQ Object: Template
+
+
+
+
+-----------------
+1) Version History
+-----------------
+
+PDQ-8-27-12
+About half of dependencies added, documentation still sparse.
+
+PDQ-6-1-11
+Original posting of code, no dependencies included, sparse documentation.
+
+
+
+
+
+-----------------
+2) Compatibility 
+-----------------
+PDQ runs in MATLAB and has been tested in:
+	-Windows Vista 64-bit (no pre-processing, see note below)
+	-Windows 7 64-bit (no pre-processing, see note below)
+	-Mac OS X
+	-Ubuntu 10.02.
+
+Note: PDQ cannot complete MRI data pre-processing on Windows platforms. Its phase unwrapping pre-processing step depends on a binary executable that runs only in Mac OS X and Linux. 
+
+
 
 
 
@@ -29,6 +59,8 @@ PDQ is dependent on the following MATLAB functions created by 3rd parties:
 (Not provided)	normxcorr3.m	(XXXXXXXX)
 		normxcorr2.m	        "
 (Provided)	prelude		(FSL, XXXXXXXXXXXXXX)
+
+
 
 
 -------------------------------------
@@ -51,6 +83,8 @@ MRIdata = prelude_import(MRIdata, path);
 
 D) Continue processing
 MRIdata = PDQ(MRIdata, dipole_orientation, expected_radius)
+
+
 
 
 
