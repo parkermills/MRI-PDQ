@@ -19,6 +19,8 @@
 -----------------
 1) Version History
 -----------------
+MRI-PDQ-Oct-24-2014.zip
+Added key missing dependencies, tutorial missing. Documentation sparse.
 
 PDQ-8-27-12
 About half of dependencies added, documentation still sparse.
