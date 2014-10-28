@@ -46,8 +46,7 @@ function template = PDQ_generate_template(resolution, orientation, radius, B0, T
 
 %% User-set preferences
 pref_gridsize = 7; % Size of dipole template, in pixels (e.g. default is 7, resulting in template sized 7x7x7)
-% Usually set to N=7 or N=9, as dipole impression falls off like r^3. Should be set to
-% smallest reasonable value so that the template doesn't factor in phase perturbations in other areas!
+% Usually set to N=7 or N=9, as dipole impression falls off like r^3. Should be set to smallest reasonable value so that the template doesn't factor in phase perturbations in other areas!
 
 pref_invert_dipole_template = 1; % For some reason, the entire dipole template must be inverted.
 

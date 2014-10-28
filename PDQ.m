@@ -59,7 +59,7 @@ pref_default_noise_std = 1.0;   % When generating mask, this is the default sigm
 pref_num_of_radii = 50;  % When it comes to fitting dipole radius, how many would you like to test?
 pref_template_shift = sqrt(3)/4.0;     % What fraction of a pixel do you want to shift the templates for detecting off-center dipoles?
                                        % This value is approximately 0.433 (sqrt(3)/4.0)
-                                       % Choose this number to be irrational may reduce chance of artifacts.
+                                       % Choosing this number to be irrational may reduce chance of artifacts.
 
 
 
