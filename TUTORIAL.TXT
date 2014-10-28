@@ -1,10 +1,16 @@
 PDQ Tutorial
 
+In this tutorial, we will import a simple dataset (SPIO particles and bubbles suspended in agarose gel) and run PDQ on it to detect dipoles.
+
 ===== Tutorial Outline =====
 1) Install PDQ
 2) Load Tutorial Dataset
-3) Unwrap Phase Image
-4) Run PDQ
+3) Convert Tutorial Dataset to MRIdata data structure
+
+X) Run PDQ
+
+X) Unwrap Phase Image
+
 
 
 
@@ -18,13 +24,29 @@ PDQ can now be used by MATLAB.
 
 
 2) ==== Load Tutorial Dataset ====
+This tutorial dataset consists of two images: 3D magnitude and 3D phase of SPIO particles in agarose gel
 In MATLAB, run the commands:
 >> load cmu_gel_3_magnitude
 >> load cmu_gel_3_phase
 
 
 
-3) ==== Unwrap Phase Image ====
+3) ==== Convert the tutorial dataset to an MRIdata data structure ====
+In MATLAB, run the commands:
+>> cmu_gel_3.mag = cmu_gel_3_magnitude;
+>> cmu_gel_3.phase = cmu_gel_3_phase;
+
+
+
+X) ==== Run PDQ ====
+PDQ_result = PDQ(cmu_gel_3, -9.035e-6, 1);
+
+
+
+
+
+
+X) ==== Unwrap Phase Image ====
 The phase image you imported has phase unwrapping artifacts!
 To remove these we'll export the phase image to NII format, then run PRELUDE to perform 3D phase unwrapping.
 This step can only be performed on a Linux or Mac OS X platform
@@ -49,12 +71,9 @@ Then wait 5 seconds for phase unwrapping to complete, then run:
 
 
 
-4) ==== High-pass Filter the Unwrapped Phase ====
+X) ==== High-pass Filter the Unwrapped Phase ====
 >> high_pass_filtered_phase = high_pass(unwrapped_phase, 5, 0.1);
 
 
 
-4) ==== Run PSM ====
-PSM_result = PSM(high_pass_filtered_phase, '3d');
 
-That's it! The PSM_result data structure (MATLAB object) contains products that are described in the file PSM.m
