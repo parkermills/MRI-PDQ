@@ -1,3 +1,5 @@
 The PRELUDE source code is part of the FSL source code. It is required to be distributed with the PRELUDE executable binaries. The FSL source code can be downloaded here:
 
 http://fsl.fmrib.ox.ac.uk/fsldownloads/fsldownloadmain.html
+
+Last verified: Oct 23, 2012
