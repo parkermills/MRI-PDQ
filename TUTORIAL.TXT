@@ -1,0 +1,60 @@
+PDQ Tutorial
+
+===== Tutorial Outline =====
+1) Install PDQ
+2) Load Tutorial Dataset
+3) Unwrap Phase Image
+4) Run PDQ
+
+
+
+1) ==== Install PDQ ====
+Open MATLAB and choose "Set Path..." in the "File" menu (newer versions have 'Set Path' under the 'Home' tab)
+In the window that topens, click "Add with Subfolders" and navigate to the directory/folder that contains this PDQ code.
+Select this directory by clicking "Ok", then click "Save" to add these paths to MATLAB.
+PDQ can now be used by MATLAB.
+
+
+
+
+2) ==== Load Tutorial Dataset ====
+In MATLAB, run the commands:
+>> load cmu_gel_3_magnitude
+>> load cmu_gel_3_phase
+
+
+
+3) ==== Unwrap Phase Image ====
+The phase image you imported has phase unwrapping artifacts!
+To remove these we'll export the phase image to NII format, then run PRELUDE to perform 3D phase unwrapping.
+This step can only be performed on a Linux or Mac OS X platform
+
+In MATLAB, change your current directory to the folder that contains the PSM code (PSM.m), then run the commands:
+>> cmu_gel_3_mask = imfill(logical(cmu_gel_3_magnitude > 0.03),'holes'); % Create a mask for the dataset
+>> save_nii(make_nii(single(cmu_gel_3_magnitude)), 'magnitude'); % Export the dataset's magnitude image
+>> save_nii(make_nii(single(cmu_gel_3_mask)), 'mask'); % Export the dataset's mask
+>> save_nii(make_nii(single(cmu_gel_3_phase)),'wrapped_phase'); % Export the dataset's phase image
+>> setenv('FSLOUTPUTTYPE', 'NIFTI_GZ');
+
+If you're on a linux platform, next run:
+>> system('./dependencies/prelude_linux -n 3 -p wrapped_phase.hdr -a magnitude.hdr -m mask.hdr -f -o unwrapped_phase&');
+
+Otherwise, if you're in Mac OS X, run this:
+>> system('./dependencies/prelude_macosx -n 3 -p wrapped_phase.hdr -a magnitude.hdr -m mask.hdr -f -o unwrapped_phase&');
+
+Then wait 5 seconds for phase unwrapping to complete, then run:
+
+>> unwrapped_phase = load_nii('unwrapped_phase.nii');
+>> unwrapped_phase = unwrapped_phase.img;
+
+
+
+4) ==== High-pass Filter the Unwrapped Phase ====
+>> high_pass_filtered_phase = high_pass(unwrapped_phase, 5, 0.1);
+
+
+
+4) ==== Run PSM ====
+PSM_result = PSM(high_pass_filtered_phase, '3d');
+
+That's it! The PSM_result data structure (MATLAB object) contains products that are described in the file PSM.m
