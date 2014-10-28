@@ -6,12 +6,10 @@ In this tutorial, we will import a simple dataset (SPIO particles and bubbles su
 
 ===== Tutorial Outline =====
 1) Install PDQ
-2) Load Tutorial Dataset
-3) Convert Tutorial Dataset to MRIdata structure
-
-X) Run PDQ
-
-X) Unwrap Phase Image
+2) Load Tutorial Data
+3) Manually Convert Tutorial Data to an MRIdata structure
+4) Run PDQ
+Appendix A) Unwrapping the Phase Image
 
 
 
@@ -26,7 +24,7 @@ PDQ can now be used by MATLAB.
 
 
 
-2) ==== Load Tutorial Dataset ====
+2) ==== Load Tutorial Data ====
 This tutorial dataset consists of two images: 3D magnitude and 3D phase of SPIO particles in agarose gel. (Note to self: these three slices were originally numbered 149-151)
 
 
@@ -37,21 +35,21 @@ In MATLAB, run the commands:
 
 
 
-3) ==== Convert Tutorial Dataset to MRIdata structure ====
+3) ==== Manually Convert Tutorial Dataset to an MRIdata structure ====
 When importing data from a Bruker MRI scanner, I would load it into a structure called an 'MRIdata'.
 We are going to trick PDQ into thinking that the tutorial dataset came from a Bruker MRI scanner.
 
 In MATLAB, run the commands:
->> cmu_gel_3.mag = cmu_gel_3_magnitude; % Copy the tutorial's magnitude image into the structure
->> cmu_gel_3.phase = cmu_gel_3_phase;   % Copy the tutorial's phase image into the structure
->> cmu_gel_3.unwrapped = cmu_gel_3_phase_unwrapped; %
->> cmu_gel_3.k_space_type = '3d';
->> cmu_gel_3.B0 = 500.1212;
->> 
+>> cmu_gel_3.mag = cmu_gel_3_magnitude;              % Copy the tutorial's magnitude image into the structure
+>> cmu_gel_3.phase = cmu_gel_3_phase;                % Copy the tutorial's phase image into the structure
+>> cmu_gel_3.unwrapped = cmu_gel_3_phase_unwrapped;  % Copy the tutorial's unwrapped phase image into the structure
+>> cmu_gel_3.k_space_type = '3d';                    % Tell PDQ this image was originally acquired in 3D (i.e., it used a 3D k-space)
+>> cmu_gel_3.B0 = 500.1212;                          % Tell PDQ the field strength is 500 MHz (11.7 T)
+>> cmu_gel_3.resolution = [54.6875 36.3281 36.3281]; % Tell PDQ that the voxels are sized 54 um x 36 um x 36 um.
+>> cmu_gel_3.TE = 5;                                 % Tell PDQ that the echo time for this image was 5 milliseconds
 
 
-
-X) ==== Run PDQ ====
+4) ==== Run PDQ ====
 To run PDQ on this dataset, the command is:
 PDQ_result = PDQ(cmu_gel_3, -9.035e-6, 1, [50 100], 0);
 
@@ -67,16 +65,18 @@ I am providing the software with 5 arguments:
 
 
 
-X) ==== Unwrap Phase Image ====
-The phase image you imported has phase unwrapping artifacts!
-To remove these we'll export the phase image to NII format, then run PRELUDE to perform 3D phase unwrapping.
-This step can only be performed on a Linux or Mac OS X platform
+Appendix A) ==== Unwrapping the Phase Image ====
+One of the tutorial datasets that you loaded (cmu_gel_3_phase) contains phase wraps. Phase wraps make PDQ potentially miss dipoles! To get around this, I provided you with this phase already unwrapped (cmu_gel_3_phase_unwrapped). But, you may need to remove phase wraps in your own datasets. Here is a little more information on how to unwrap the phase image.
 
-In MATLAB, change your current directory to the folder that contains the PSM code (PSM.m), then run the commands:
+To remove phase wraps we'll export the phase image to NII format, then run PRELUDE to perform 3D phase unwrapping.
+This step can only be performed on a Linux or Mac OS X platform.
+
+In MATLAB, change your current directory to the folder that contains the PDQ code (PDQ.m), then run the commands:
+
 >> cmu_gel_3_mask = imfill(logical(cmu_gel_3_magnitude > 0.03),'holes'); % Create a mask for the dataset
->> save_nii(make_nii(single(cmu_gel_3_magnitude)), 'magnitude'); % Export the dataset's magnitude image
->> save_nii(make_nii(single(cmu_gel_3_mask)), 'mask'); % Export the dataset's mask
->> save_nii(make_nii(single(cmu_gel_3_phase)),'wrapped_phase'); % Export the dataset's phase image
+>> save_nii(make_nii(single(cmu_gel_3_magnitude)), 'magnitude');         % Export the dataset's magnitude image
+>> save_nii(make_nii(single(cmu_gel_3_mask)), 'mask');                   % Export the dataset's mask
+>> save_nii(make_nii(single(cmu_gel_3_phase)),'wrapped_phase');          % Export the dataset's phase image
 >> setenv('FSLOUTPUTTYPE', 'NIFTI_GZ');
 
 If you're on a linux platform, next run:
@@ -87,14 +87,9 @@ Otherwise, if you're in Mac OS X, run this:
 
 Then wait 5 seconds for phase unwrapping to complete, then run:
 
->> unwrapped_phase = load_nii('unwrapped_phase.nii');
->> unwrapped_phase = unwrapped_phase.img;
+>> cmu_gel_3_unwrapped_phase = load_nii('unwrapped_phase.nii');
+>> cmu_gel_3_unwrapped_phase = cmu_gel_3_unwrapped_phase.img;
 
-
-
-X) ==== High-pass Filter the Unwrapped Phase ====
->> high_pass_filtered_phase = high_pass(unwrapped_phase, 5, 0.1);
-
-
+You've unwrapped the phase image and PDQ will take care of the rest, including applying a high-pass filter to the unwrapped phase image.
 
 
