@@ -2,10 +2,12 @@ PDQ Tutorial
 
 In this tutorial, we will import a simple dataset (SPIO particles and bubbles suspended in agarose gel) and run PDQ on it to detect dipoles.
 
+
+
 ===== Tutorial Outline =====
 1) Install PDQ
 2) Load Tutorial Dataset
-3) Convert Tutorial Dataset to MRIdata data structure
+3) Convert Tutorial Dataset to MRIdata structure
 
 X) Run PDQ
 
@@ -23,23 +25,42 @@ PDQ can now be used by MATLAB.
 
 
 
+
 2) ==== Load Tutorial Dataset ====
-This tutorial dataset consists of two images: 3D magnitude and 3D phase of SPIO particles in agarose gel
+This tutorial dataset consists of two images: 3D magnitude and 3D phase of SPIO particles in agarose gel. (Note to self: these three slices were originally numbered 149-151)
+
+
 In MATLAB, run the commands:
 >> load cmu_gel_3_magnitude
 >> load cmu_gel_3_phase
+>> load cmu_gel_3_phase_unwrapped
 
 
 
-3) ==== Convert the tutorial dataset to an MRIdata data structure ====
+3) ==== Convert Tutorial Dataset to MRIdata structure ====
+When importing data from a Bruker MRI scanner, I would load it into a structure called an 'MRIdata'.
+We are going to trick PDQ into thinking that the tutorial dataset came from a Bruker MRI scanner.
+
 In MATLAB, run the commands:
->> cmu_gel_3.mag = cmu_gel_3_magnitude;
->> cmu_gel_3.phase = cmu_gel_3_phase;
+>> cmu_gel_3.mag = cmu_gel_3_magnitude; % Copy the tutorial's magnitude image into the structure
+>> cmu_gel_3.phase = cmu_gel_3_phase;   % Copy the tutorial's phase image into the structure
+>> cmu_gel_3.unwrapped = cmu_gel_3_phase_unwrapped; %
+>> cmu_gel_3.k_space_type = '3d';
+>> cmu_gel_3.B0 = 500.1212;
+>> 
 
 
 
 X) ==== Run PDQ ====
-PDQ_result = PDQ(cmu_gel_3, -9.035e-6, 1);
+To run PDQ on this dataset, the command is:
+PDQ_result = PDQ(cmu_gel_3, -9.035e-6, 1, [50 100], 0);
+
+I am providing the software with 5 arguments:
+1) cmu_gel_3: The MRIdata structure containing the images of the gel.
+2) -9.035e-6: The magnetic susceptibility of the gel.
+3)         1: The orientation of the magnetic field (B0)
+4)  [50 100]: The range of radius I expect for dipoles in this gel (50 - 100 um)
+5)         0: The type of background noise (see documentation)
 
 
 
