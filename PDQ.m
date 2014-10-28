@@ -6,11 +6,12 @@
 % ==================== INPUT PARAMETERS ======================
 % @param MRIdata                  (MRIdata)        MRI dataset to be analyzed by PDQ (see README.txt for datatype details)
 % @param CHI_background           (Float)          Magnetic susceptibility of background material surrounding SPIO deposits.
-%                                                  Necessary for accurate determination of dipole's susceptibility and magnetic dipole moment
+%                                                  Necessary for accurate determination of dipole's susceptibility and magnetic dipole moment.
+%                                                  An example value would be -9.035e-6, the magnetic susceptibility of agarose gel
 %
-% @param orientation              (Float)          OPTIONAL Orientation axis, if already known beforehand
-% @param user_radius              (Float)          OPTIONAL Estimated radius range of sphere of SPIO. 2 element vector if upper-bound and lower-bound known
-%                                                           3 element vector if optimal_radius also known: [lower_bound upper_bound] -OR- [lower_bound upper_bound optimal_radius]
+% @param orientation              (Float)(Optional)   Orientation axis, if already known beforehand
+% @param user_radius              (Float)(Optional)   Estimated radius range of sphere of SPIO. 2 element vector if upper-bound and lower-bound known
+%                                                     3 element vector if optimal_radius also known: [lower_bound upper_bound] -OR- [lower_bound upper_bound optimal_radius]
 %                    
 % @param dual_gaussian            (Float)          OPTIONAL 
 %
@@ -79,8 +80,8 @@ end
 MRIdata.PDQ.xcorr_cutoff = xcorr_cutoff;
 
 % Prompt user for key variables, if not given in function call
-if(~exist('orientation','var'))
-    if(isfield(MRIdata,'unwrapped'))
+if(~exist('orientation', 'var'))
+    if(isfield(MRIdata, 'unwrapped'))
         fig1 = images(MRIdata.unwrapped); title('MRI data raw phase image');
     else
         fig1 = images(MRIdata.phase); title('MRI data raw phase image');
@@ -88,7 +89,7 @@ if(~exist('orientation','var'))
     orientation = input('What direction is B0?   1: Up-Down   2: In-Out   3: Left-Right  [1-3]: ');
     close(fig1);
 end
-if(~exist('user_radius','var'))
+if(~exist('user_radius', 'var'))
     user_radius = input('What is estimated radius range of SPIO spheres? [microns microns]: ');
 end
 
@@ -96,13 +97,13 @@ end
 
 %% Calculate mask from magnitude image
 disp('PDQ: Calculating masks');
-if(~isfield(MRIdata,'mask'))
+if(~isfield(MRIdata, 'mask'))
     
     % Establish whether the dataset is a single or dual-Gaussian image
-    if(~exist('dual_gaussian','var'))
+    if(~exist('dual_gaussian', 'var'))
         dual_gaussian = 0;
         reply_dual_gaussian = input('Is this a dual-Gaussian image (e.g., sample in liquid)? y/n [n]:', 's');
-        if(strcmp(reply_dual_gaussian,'y'))
+        if(strcmp(reply_dual_gaussian, 'y'))
             dual_gaussian = 1;
         end
     end
@@ -114,9 +115,9 @@ end
 
 %% Unwrap phase images
 disp('PDQ: Unwrapping phase images');
-if(~isfield(MRIdata,'unwrapped'))
+if(~isfield(MRIdata, 'unwrapped'))
     MRIdata = unwrap_phase_image(MRIdata, platform, maximum_unwrap_hours);
-    if(strcmp(platform,'windows'))
+    if(strcmp(platform, 'windows'))
         error('PDQ: You are using Windows. Data has been exported using prelude_export. You must manually unwrap your images using PRELUDE. Data saved to disc as MRIdata.mat. Quitting.');
     end
 end
