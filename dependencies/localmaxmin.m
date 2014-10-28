@@ -1,6 +1,6 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Line 105 has been edited for use by PDQ
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Note: One line (around line 104) has been edited for use by the MRI-PDQ software
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function [x,n]=localmaxmin(y,xn)
 %LOCALMAXMIN(Y) Local Maxima and Minima.
@@ -101,7 +101,7 @@ if strcmp(xn,'max') || nargout==2 % get maxima
          itmp=ir;
          itmp(zdiff(:,k))=[];
          if all(sdiff(:,k)==0) % entire column is flat
-            x(:,k)=false; % EDITED FOR PDQ. ORIGINAL LINE WAS x(:,k)=true;
+            x(:,k)=false;   % EDITED FOR PDQ. ORIGINAL LINE WAS x(:,k)=true;
          else
             tmp=diff(sign(diff(y(itmp,k))))==-2;
             x(itmp(tmp)+1,k)=true;
