@@ -39,6 +39,8 @@ In MATLAB, run the commands:
 
 
 
+
+
 3) ==== Manually Convert Tutorial Dataset to an MRIdata structure ====
 When importing data from a Bruker MRI scanner, I would load it into a structure called an 'MRIdata'.
 We are going to trick PDQ into thinking that the tutorial dataset came from a Bruker MRI scanner.
@@ -53,9 +55,11 @@ In MATLAB, run the commands:
 >> cmu_gel_3.TE = 5;                                 % Tell PDQ that the echo time for this image was 5 milliseconds
 
 
+
+
 4) ==== Run PDQ ====
 To run PDQ on this dataset, the command is:
-PDQ_result = PDQ(cmu_gel_3, -9.035e-6, 1, [10 50], 0);
+cmu_gel_3 = PDQ(cmu_gel_3, -9.035e-6, 1, [10 50], 0);
 
 I am providing the software with 5 arguments:
 1) cmu_gel_3: The MRIdata structure containing the images of the gel.
@@ -65,6 +69,25 @@ I am providing the software with 5 arguments:
 5)         0: The type of background noise (see documentation)
 
 
+
+
+
+5) ==== Analyze the Results ====
+Now that PDQ has finished running, the MRIdata structure you provided contains additional information.
+
+To see the new information type:
+>> cmu_gel_3.PDQ
+
+To learn more about one of the dipoles located by PDQ, type:
+>> cmu_gel_3.PDQ.dipoles_hp(1)
+
+You'll see a list of information about the dipole, including estimates of its magnetic properties. It's located at coordinates x,y,z = (14, 89, 5).
+
+To view the dipole all on its own, type:
+>> images(cmu_gel_3.PDQ.dipoles_hp(1).phase)
+
+Now, there are over 80 dipoles found in small dataset. To show information about all the dipoles, run:
+>> PDQ_visualize(cmu_gel_3);
 
 
 
