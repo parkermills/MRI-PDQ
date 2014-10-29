@@ -86,7 +86,13 @@ You'll see a list of information about the dipole, including estimates of its ma
 To view the dipole all on its own, type:
 >> images(cmu_gel_3.PDQ.dipoles_hp(1).phase)
 
-Now, there are over 80 dipoles found in small dataset. To show information about all the dipoles, run:
+Now, there are over 80 dipoles found in small dataset. We want to quickly mark all dipoles as 'probable' by running:
+>> cmu_gel_3 = PDQ_inspect(cmu_gel_3, 0.3, [0 inf], 0, 1); 
+
+If you'd like, afterwards, you can inspect dipole manually, verifying or rejecting each dipole, by running:
+>> cmu_gel_3 = PDQ_inspect(cmu_gel_3, 0.3, [0 inf], 1, 1); 
+
+Finally, to show information about all the dipoles, run:
 >> PDQ_visualize(cmu_gel_3);
 
 
