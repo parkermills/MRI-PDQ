@@ -32,7 +32,7 @@ pref_fixed_xcorr_cutoff_default = 0.3;
 pref_var_xcorr_cutoff_default = 0.6;
 pref_fixed_mdm_range_default = [-inf inf];
 pref_var_mdm_range_default = [-inf inf];
-pref_display_gaussian_fits = 1;
+pref_display_gaussian_fits = 0; % Set to '0' to hide Gaussian fits used to calculate mean and standard deviation of various magnetic property estimates
 
 
 
@@ -91,8 +91,8 @@ dipoles            = vectorize_and_remove_zeros(dipoles,            'dipoles', f
 dipoles_multiradii = vectorize_and_remove_zeros(dipoles_multiradii, 'dipoles', var_xcorr_cutoff,   var_mdm_range);
 
 % Store lengths, sizes, and screen size
-num_dipoles = length(dipoles);
-num_dipoles_multiradii = length(dipoles_multiradii);
+num_dipoles = length(dipoles)
+num_dipoles_multiradii = length(dipoles_multiradii)
 scrsz = get(0,'ScreenSize');
 
 
