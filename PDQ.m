@@ -4,29 +4,29 @@
 % @author Parker Mills, Ahrens Lab, Carnegie Mellon 2009
 %
 % ==================== INPUT PARAMETERS ======================
-% @param MRIdata                  (MRIdata)        MRI dataset to be analyzed by PDQ (see README.txt for datatype details)
-% @param CHI_background           (Float)          Magnetic susceptibility of background material surrounding SPIO deposits.
+% @param   MRIdata                  (MRIdata)        MRI dataset to be analyzed by PDQ (see README.txt for datatype details)
+% @param   CHI_background           (Float)          Magnetic susceptibility of background material surrounding SPIO deposits.
 %                                                  Necessary for accurate determination of dipole's susceptibility and magnetic dipole moment.
 %                                                  An example value would be -9.035e-6, the magnetic susceptibility of agarose gel
 %
-% @param orientation              (Float)(Optional)   Orientation axis, if already known beforehand
-% @param user_radius              (Float)(Optional)   Estimated radius range of sphere of SPIO. 2 element vector if upper-bound and lower-bound known
+% @param   orientation              (Float)(Optional)   Orientation axis, if already known beforehand
+% @param   user_radius              (Float)(Optional)   Estimated radius range of sphere of SPIO. 2 element vector if upper-bound and lower-bound known
 %                                                     3 element vector if optimal_radius also known: [lower_bound upper_bound] -OR- [lower_bound upper_bound optimal_radius]
 %                    
-% @param dual_gaussian            (Float)          OPTIONAL 
+% @param   dual_gaussian            (Float)          OPTIONAL 
 %
 % ==================== RETURNED DATA =========================
-% @return MRIdata                 (MRIdata)            PDQ result (see README.txt)
+% @return  MRIdata                 (MRIdata)            PDQ result (see README.txt)
 %
 % ==================== ASSUMPTIONS ===========================
-% @assume If a data item is already present in the MRIdata structure, PDQ will not re-calculate those items.
-%         You must delete them in order for them to be recalculated.
-%         For example, "MRIdata = rmfield(MRIdata, 'PDQ');" will erase all PDQ results so they may be calculated from scratch.
+% @assume  If a data item is already present in the MRIdata structure, PDQ will not re-calculate those items.
+%          You must delete them in order for them to be recalculated.
+%          For example, "MRIdata = rmfield(MRIdata, 'PDQ');" will erase all PDQ results so they may be calculated from scratch.
 %
 % ==================== EXAMPLE USAGE =========================
-% MRIdata = PDQ(MRIdata, CHI_background, orientation, user_radius, dual_gaussian);
-% jhu_gel3 = PDQ(jhu_gel3, -9.035e-6, 1, [65 540], 0);
-% lesleybrain0 = PDQ(lesleybrain0, -9.035e-6, 1, [0 60 32], 0);
+% MRIdata  =  PDQ(MRIdata, CHI_background, orientation, user_radius, dual_gaussian);
+% jhu_gel3  =  PDQ(jhu_gel3, -9.035e-6, 1, [65 540], 0);
+% lesleybrain0  =  PDQ(lesleybrain0, -9.035e-6, 1, [0 60 32], 0);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function MRIdata = PDQ(MRIdata, CHI_background, orientation, user_radius, dual_gaussian)
